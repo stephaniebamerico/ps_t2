@@ -1,0 +1,72 @@
+{
+  "name": "Bloco",
+  "plural": "blocos",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true,
+    "ensalemento": {
+      "schema": "strongloop",
+      "table": "bloco"
+    }
+  },
+  "properties": {
+    "localizacao": {
+      "type": "geopoint",
+      "required": true
+    },
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "codigo": {
+      "type": "string",
+      "id": true,
+      "required": true
+    },
+    "tamanho": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "_id": {
+      "type": "number",
+      "generated": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "setor": {
+      "type": "belongsTo",
+      "model": "Setor",
+      "foreignKey": "setorCod"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "secretario_setor",
+      "permission": "ALLOW",
+      "property": "*"
+    }
+  ],
+  "methods": {}
+}

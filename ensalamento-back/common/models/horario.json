@@ -1,0 +1,68 @@
+{
+  "name": "Horario",
+  "plural": "horarios",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "dia": {
+      "type": "number",
+      "required": true
+    },
+    "horario_inicial": {
+      "type": "string",
+      "required": true
+    },
+    "horario_final": {
+      "type": "string",
+      "required": true
+    },
+    "livre": {
+      "type": "boolean",
+      "required": true
+    },
+    "motivo": {
+      "type": "string"
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "sala": {
+      "type": "belongsTo",
+      "model": "Sala",
+      "foreignKey": "salaCode"
+    },
+    "ensalamento": {
+      "type": "belongsTo",
+      "model": "Ensalamento",
+      "foreignKey": "ensalamentoId"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    }
+  ],
+  "methods": {}
+}

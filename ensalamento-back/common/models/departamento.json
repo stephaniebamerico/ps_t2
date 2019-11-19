@@ -1,0 +1,63 @@
+{
+  "name": "Departamento",
+  "plural": "departamentos",
+  "base": "Orgao",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "codigo": {
+      "type": "string",
+      "id": true,
+      "required": true
+    },
+    "_id": {
+      "type": "number",
+      "generated": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "setor": {
+      "type": "belongsTo",
+      "model": "Setor",
+      "foreignKey": "setorCod"
+    },
+    "turmas": {
+      "type": "hasMany",
+      "model": "Turma",
+      "foreignKey": "departamentoCod"
+    },
+    "professores": {
+      "type": "hasMany",
+      "model": "Professor",
+      "foreignKey": "departamentoCod"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "*"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "comissao",
+      "permission": "ALLOW",
+      "property": "*"
+    }
+  ],
+  "methods": {}
+}

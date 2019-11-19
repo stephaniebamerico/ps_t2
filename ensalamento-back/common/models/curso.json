@@ -1,0 +1,67 @@
+{
+  "name": "Curso",
+  "plural": "cursos",
+  "base": "Orgao",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "codigo": {
+      "type": "string",
+      "id": true,
+      "required": true
+    },
+    "_id": {
+      "type": "number",
+      "generated": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "bloco": {
+      "type": "belongsTo",
+      "model": "Bloco",
+      "foreignKey": "blocoCod"
+    },
+    "setor": {
+      "type": "belongsTo",
+      "model": "Setor",
+      "foreignKey": "setorCod"
+    },
+    "disciplinas": {
+      "type": "hasAndBelongsToMany",
+      "model": "Disciplina"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "comissao",
+      "permission": "ALLOW",
+      "property": "*"
+    }
+  ],
+  "methods": {}
+}

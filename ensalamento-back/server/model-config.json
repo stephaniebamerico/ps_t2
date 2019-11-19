@@ -1,0 +1,119 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "AccessToken": {
+    "dataSource": "ensalamento",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "ensalamento",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "ensalamento",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "ensalamento",
+    "public": true
+  },
+  "Sala": {
+    "dataSource": "ensalamento",
+    "public": true
+  },
+  "Bloco": {
+    "dataSource": "ensalamento",
+    "public": true
+  },
+  "Disciplina": {
+    "dataSource": "ensalamento",
+    "public": true
+  },
+  "Equivalenciadisciplina": {
+    "dataSource": "ensalamento",
+    "public": false
+  },
+  "Evento": {
+    "dataSource": "ensalamento",
+    "public": false
+  },
+  "Turma": {
+    "dataSource": "ensalamento",
+    "public": true
+  },
+  "Recursodesala": {
+    "dataSource": "ensalamento",
+    "public": false
+  },
+  "Tipodesala": {
+    "dataSource": "ensalamento",
+    "public": false
+  },
+  "Orgao": {
+    "dataSource": "ensalamento",
+    "public": false
+  },
+  "Secretario": {
+    "dataSource": "ensalamento",
+    "public": false
+  },
+  "Setor": {
+    "dataSource": "ensalamento",
+    "public": true
+  },
+  "Departamento": {
+    "dataSource": "ensalamento",
+    "public": true
+  },
+  "Curso": {
+    "dataSource": "ensalamento",
+    "public": true
+  },
+  "Professor": {
+    "dataSource": "ensalamento",
+    "public": true
+  },
+  "Usuario": {
+    "dataSource": "ensalamento",
+    "public": true
+  },
+  "Horario": {
+    "dataSource": "ensalamento",
+    "public": true
+  },
+  "Ensalamento": {
+    "dataSource": "ensalamento",
+    "public": true
+  },
+  "FileUpload": {
+    "dataSource": "ensalamento",
+    "public": true
+  },
+  "FileUploadError": {
+    "dataSource": "ensalamento",
+    "public": true
+  },
+  "container": {
+    "dataSource": "container",
+    "public": true
+  },
+  "Semestre": {
+    "dataSource": "ensalamento",
+    "public": true
+  }
+}

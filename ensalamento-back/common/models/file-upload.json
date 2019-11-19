@@ -1,0 +1,52 @@
+{
+  "name": "FileUpload",
+  "plural": "file-uploads",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "date": {
+      "type": "date",
+      "required": true,
+      "defaultFn": "now"
+    },
+    "letive_init": {
+      "type": "date",
+      "required": true
+    },
+    "letive_end": {
+      "type": "date",
+      "required": true
+    },
+    "container_name": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "string"
+    },
+    "completed": {
+      "type": "number",
+      "default": 0,
+      "postgresql": {
+        "dataType": "real"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "errors": {
+      "type": "hasAndBelongsToMany",
+      "model": "FileUploadError"
+    },
+    "semestre": {
+      "type": "belongsTo",
+      "model": "Semestre",
+      "foreignKey": "semestre"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

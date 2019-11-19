@@ -1,0 +1,106 @@
+{
+  "name": "Sala",
+  "plural": "salas",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true,
+    "ensalemento": {
+      "schema": "strongloop",
+      "table": "sala"
+    }
+  },
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "codigo": {
+      "type": "string",
+      "id": true,
+      "required": true
+    },
+    "localizacao": {
+      "type": "geopoint",
+      "required": true
+    },
+    "andar": {
+      "type": "number",
+      "default": 0
+    },
+    "capacidade": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "restrita": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "observacao": {
+      "type": "string"
+    },
+    "_id": {
+      "type": "number",
+      "generated": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "bloco": {
+      "type": "belongsTo",
+      "model": "Bloco",
+      "foreignKey": "blocoCod"
+    },
+    "recursos": {
+      "type": "hasAndBelongsToMany",
+      "model": "Recursodesala",
+      "foreignKey": ""
+    },
+    "tipo": {
+      "type": "belongsTo",
+      "model": "Tipodesala",
+      "foreignKey": "tipo"
+    },
+    "secretario": {
+      "type": "belongsTo",
+      "model": "Secretario",
+      "foreignKey": "ownerId"
+    },
+    "horarios": {
+      "type": "hasMany",
+      "model": "Horario",
+      "foreignKey": "salaId",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

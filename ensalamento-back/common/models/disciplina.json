@@ -1,0 +1,175 @@
+{
+  "name": "Disciplina",
+  "plural": "disciplinas",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "properties": {
+    "codigo": {
+      "type": "String",
+      "id": true,
+      "required": true,
+      "length": 64,
+      "precision": null,
+      "scale": null
+    },
+    "nome": {
+      "type": "String",
+      "length": 256,
+      "precision": null,
+      "scale": null
+    },
+    "carga_horaria": {
+      "type": "Number",
+      "required": true,
+      "precision": null,
+      "scale": null,
+      "default": 0
+    },
+    "duracao": {
+      "type": "String",
+      "required": true,
+      "length": 64,
+      "precision": null,
+      "scale": null,
+      "default": "semestral"
+    },
+    "modalidade": {
+      "type": "String",
+      "length": 64,
+      "precision": null,
+      "scale": null,
+      "default": "presencial"
+    },
+    "_id": {
+      "type": "number",
+      "generated": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "turmas": {
+      "type": "hasMany",
+      "model": "Turma",
+      "foreignKey": "disciplinaCod",
+      "required": true
+    },
+    "recursosnecessarios": {
+      "type": "hasAndBelongsToMany",
+      "model": "Recursodesala",
+      "foreignKey": ""
+    },
+    "tipo_sala_necessaria": {
+      "type": "belongsTo",
+      "model": "Tipodesala",
+      "foreignKey": "tipodesalaId"
+    },
+    "departamento": {
+      "type": "belongsTo",
+      "model": "Departamento",
+      "foreignKey": "departamentoCod"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "search"
+    }
+  ],
+  "methods": {
+    "prototype.addEquivalencia": {
+      "accepts": [
+        {
+          "arg": "disciplina_eq_code",
+          "type": "string"
+        }
+      ],
+      "returns": {
+        "type": "object",
+        "root": true
+      },
+      "description": "Create a new equivalence of the model and persist it into the data source",
+      "http": {
+        "verb": "post",
+        "path": "/equivalencias"
+      }
+    },
+    "prototype.getEquivalencias": {
+      "accepts": [],
+      "returns": {
+        "type": "object",
+        "root": true
+      },
+      "description": "Find all equivalences of a model matched.",
+      "http": {
+        "verb": "get",
+        "path": "/equivalencias"
+      }
+    },
+    "prototype.deleteEquivalencia": {
+      "accepts": [
+        {
+          "arg": "disciplina_eq_code",
+          "type": "string"
+        }
+      ],
+      "returns": {
+        "type": "object",
+        "root": true
+      },
+      "description": "Delete a equivalence of model instance by {{id}} from the data source.",
+      "http": {
+        "verb": "delete",
+        "path": "/equivalencias"
+      }
+    },
+    "search": {
+      "accepts": [
+        {
+          "arg": "query",
+          "type": "string",
+          "required": true,
+          "description": "query",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "turmas",
+          "type": "array",
+          "root": false,
+          "description": "turmas"
+        }
+      ],
+      "description": "pesquisa por turma ",
+      "http": [
+        {
+          "path": "/search",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

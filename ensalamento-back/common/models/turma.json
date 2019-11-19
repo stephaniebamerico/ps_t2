@@ -1,0 +1,163 @@
+{
+  "name": "Turma",
+  "plural": "turmas",
+  "base": "Evento",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "codigo": {
+      "type": "string",
+      "required": true
+    },
+    "data_inicio": {
+      "type": "date",
+      "required": true
+    },
+    "data_fim": {
+      "type": "date",
+      "required": true
+    },
+    "merged": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "departamento": {
+      "type": "belongsTo",
+      "model": "Departamento",
+      "foreignKey": "departamentoCod"
+    },
+    "disciplina": {
+      "type": "belongsTo",
+      "model": "Disciplina",
+      "foreignKey": "disciplinaCod"
+    },
+    "semestre": {
+      "type": "belongsTo",
+      "model": "Semestre",
+      "foreignKey": "semestre"
+    },
+    "professor": {
+      "type": "belongsTo",
+      "model": "Professor",
+      "foreignKey": "professorCod"
+    },
+    "cursos": {
+      "type": "belongsTo",
+      "model": "Curso",
+      "foreignKey": "cursoCod"
+    },
+    "turmasMergeds": {
+      "type": "hasMany",
+      "model": "Turma",
+      "foreignKey": "mergedCod"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "secretario_dpto",
+      "permission": "ALLOW",
+      "property": "*"
+    }
+  ],
+  "methods": {
+    "juntar": {
+      "accepts": [
+        {
+          "arg": "turmas",
+          "type": "array",
+          "required": true,
+          "description": "lista de turmas a serem unidas"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "status",
+          "type": "object",
+          "root": false,
+          "description": "status da união"
+        }
+      ],
+      "description": "junta turmas",
+      "http": [
+        {
+          "path": "/merge",
+          "verb": "post"
+        }
+      ]
+    },
+    "mergehorario": {
+      "accepts": [
+        {
+          "arg": "horarios",
+          "type": "array",
+          "required": true,
+          "description": "array de objetos horarios, incluindo turma"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "status",
+          "type": "object",
+          "root": false,
+          "description": "status de retorno"
+        }
+      ],
+      "description": "juntar dois horarios de turmas diferentes",
+      "http": [
+        {
+          "path": "/mergehorario",
+          "verb": "post"
+        }
+      ]
+    },
+    "create": {
+      "accepts": [
+        {
+          "arg": "turma",
+          "type": "object",
+          "required": true,
+          "description": "turma a ser inserida, contendo horarios"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "status",
+          "type": "object",
+          "root": false,
+          "description": "objeto de retorno"
+        }
+      ],
+      "description": "cria ou atualiza turma",
+      "http": [
+        {
+          "path": "/create",
+          "verb": "put"
+        }
+      ]
+    }
+  }
+}

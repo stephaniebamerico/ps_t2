@@ -1,0 +1,12 @@
+*.html
+binario.txt
+output.txt
+current.yaml
+CMakeCache.txt
+cmake_install.cmake
+CMakeFiles
+ensalador
+schedules.yaml
+rooms.yaml
+Makefile
+munkres-cpp

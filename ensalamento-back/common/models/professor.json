@@ -1,0 +1,65 @@
+{
+  "name": "Professor",
+  "plural": "professores",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "codigo": {
+      "type": "string",
+      "id": true,
+      "required": true
+    },
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "website": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "_id": {
+      "type": "number",
+      "generated": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "departamento": {
+      "type": "belongsTo",
+      "model": "Departamento",
+      "foreignKey": "departamentoCod"
+    },
+    "turmas": {
+      "type": "hasMany",
+      "model": "Turma",
+      "foreignKey": "turmaId"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "*"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "search"
+    }
+  ],
+  "methods": {}
+}

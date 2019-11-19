@@ -1,0 +1,52 @@
+{
+  "name": "Evento",
+  "plural": "eventos",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "organizador": {
+      "type": "string"
+    },
+    "vagas": {
+      "type": "number",
+      "required": true
+    },
+    "ano": {
+      "type": "number"
+    },
+    "periodo": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "horarios": {
+      "type": "hasAndBelongsToMany",
+      "model": "Horario"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    }
+  ],
+  "methods": {}
+}

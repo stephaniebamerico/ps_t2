@@ -1,0 +1,69 @@
+{
+  "name": "Setor",
+  "plural": "setores",
+  "base": "Orgao",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "website": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "codigo": {
+      "type": "string",
+      "id": true,
+      "required": true
+    },
+    "_id": {
+      "type": "number",
+      "generated": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "departamentos": {
+      "type": "hasMany",
+      "model": "Departamento",
+      "foreignKey": "setorCod"
+    },
+    "blocos": {
+      "type": "hasMany",
+      "model": "Bloco",
+      "foreignKey": "setorCod"
+    },
+    "cursos": {
+      "type": "hasMany",
+      "model": "Curso",
+      "foreignKey": "setorCod"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "*"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "comissao",
+      "permission": "ALLOW",
+      "property": "*"
+    }
+  ],
+  "methods": {}
+}
