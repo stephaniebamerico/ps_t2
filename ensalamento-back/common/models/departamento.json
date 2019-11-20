@@ -37,6 +37,13 @@
       "type": "hasMany",
       "model": "Professor",
       "foreignKey": "departamentoCod"
+    },
+    "murais": {
+      "type": "hasOne",
+      "model": "Mural",
+      "polymorphic": {
+        "selector": "orgao"
+      }
     }
   },
   "acls": [

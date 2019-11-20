@@ -74,6 +74,10 @@
       "options": {
         "nestRemoting": true
       }
+    },
+    "avisos": {
+      "type": "hasMany",
+      "model": "Aviso"
     }
   },
   "acls": [

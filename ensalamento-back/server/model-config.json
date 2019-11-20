@@ -115,5 +115,13 @@
   "Semestre": {
     "dataSource": "ensalamento",
     "public": true
+  },
+  "Mural": {
+    "dataSource": "ensalamento",
+    "public": true
+  },
+  "Aviso": {
+    "dataSource": "ensalamento",
+    "public": true
   }
 }

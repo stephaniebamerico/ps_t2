@@ -55,6 +55,10 @@
       "type": "hasMany",
       "model": "Turma",
       "foreignKey": "mergedCod"
+    },
+    "avisos": {
+      "type": "hasMany",
+      "model": "Aviso"
     }
   },
   "acls": [

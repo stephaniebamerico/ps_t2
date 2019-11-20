@@ -1,0 +1,30 @@
+{
+  "name": "Mural",
+  "plural": "murais",
+  "base": "PersistedModel",
+  "properties": {
+    "_id": {
+      "type": "number",
+      "generated": true
+    },
+    "orgaoId": {
+      "required": true
+    },
+    "orgaoType": {
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "orgao": {
+      "type": "belongsTo",
+      "polymorphic": true
+    },
+    "avisos": {
+      "type": "hasMany",
+      "model": "Aviso"
+    }
+  },
+  "acls": [],
+  "methods": []
+}

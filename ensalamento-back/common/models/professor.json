@@ -38,6 +38,13 @@
       "type": "hasMany",
       "model": "Turma",
       "foreignKey": "turmaId"
+    },
+    "avisos": {
+      "type": "hasMany",
+      "model": "Aviso",
+      "polymorphic": {
+        "selector": "responsavel"
+      }
     }
   },
   "acls": [

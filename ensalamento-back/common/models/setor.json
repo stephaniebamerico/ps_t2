@@ -43,6 +43,13 @@
       "type": "hasMany",
       "model": "Curso",
       "foreignKey": "setorCod"
+    },
+    "murais": {
+      "type": "hasOne",
+      "model": "Mural",
+      "polymorphic": {
+        "selector": "orgao"
+      }
     }
   },
   "acls": [

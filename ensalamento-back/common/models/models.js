@@ -33,7 +33,8 @@ var models = [
     "FileUploadError",
     "FileUploadFileUploadError",
     "TurmaHorario",
-
+    "Mural",
+    "Aviso"
 ];
 
 /**

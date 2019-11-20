@@ -35,6 +35,13 @@
     "disciplinas": {
       "type": "hasAndBelongsToMany",
       "model": "Disciplina"
+    },
+    "murais": {
+      "type": "hasOne",
+      "model": "Mural",
+      "polymorphic": {
+        "selector": "orgao"
+      }
     }
   },
   "acls": [
